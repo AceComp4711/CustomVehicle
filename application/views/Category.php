@@ -1,7 +1,15 @@
-<h1>Category</h1>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+	$.ajax({url: "/Category.php", success: function (result) {
+                   var data = result;
+                   console.log(“initialLoad3 = ” + initialLoad);
+                   console.log(data);
+               }});
+</script>
+	<h1>Category</h1>
 
 <div id="body">
     <p>Categories of your desired car!</p>
+	
 		<div class="row">
 			<div class="column">
 				<img src="Images/car1.png" style="width:25%">

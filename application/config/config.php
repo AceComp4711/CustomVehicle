@@ -5,9 +5,9 @@ $config['menu_choices'] = array(
     'menudata' => array(
         array('name' => 'Andra', 'link' => '/#'),
         array('name' => 'Oliver', 'link' => '/#'),
-        array('name' => 'Nixon', 'link' => '/category'),
+        array('name' => 'Nixon', 'link' => '/ListedCatalog'),
         array('name' => 'Mark', 'link' => '/#'),
-        array('name' => 'Vinz', 'link' => '/#')
+        array('name' => 'Vinz', 'link' => '/category'),
         )
     );
 
