@@ -11,7 +11,7 @@
  *
  * @author Lucas
  */
-class AccessoryEntity{ 
+class AccessoryEntity extends Entity{ 
     public $AccessoryId;
     public $Description;
     public $CategoryId;
@@ -45,29 +45,82 @@ class AccessoryEntity{
     }
 
     public function setAccessoryId($accessoryId) {
+        
+        if (empty($accessoryId))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
+        
         $this->AccessoryId = $accessoryId;
     }
 
     public function setDescription($description) {
+        if (empty($description))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
         $this->Description = $description;
     }
 
     public function setCategory($category) {
+        if (empty($category))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
         $this->CategoryId = $category;
     }
 
     public function setCost($cost) {
+        
+        if (empty($cost))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
+        
+        if($cost <1 || $cost>10)
+            throw new Exception('Cost range must be between 1 and 10');   
+        
         $this->Cost = $cost;
     }
 
     public function setPopularity($popularity) {
+        
+        if (empty($popularity))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
+        
+        if($popularity <1 || $popularity >10)
+            throw new Exception('Popularity range must be between 1 and 10');  
+        
         $this->Popularity = $popularity;
     }
 
     public function setQuality($quality) {
+        
+        if (empty($quality))
+        {
+            throw new InvalidArgumentException('Cannot be empty.');
+        }
+        
+        if($quality <1 || $quality >10)
+            throw new Exception('Quality range must be between 1 and 10');  
+        
         $this->Quality = $quality;
     }
 
-
-
+        public function rules()
+        {
+        $config = array(
+            ['field' => 'description', 'label' => 'Description', 'rules' => 'alpha_numeric_spaces|max_length[64]'],
+            ['field' => 'cost', 'label' => 'Cost', 'rules' => 'integer|less_than[11]'],
+            ['field' => 'popularity', 'label' => 'Popularity', 'rules' => 'integer|less_than[11]'],
+            ['field' => 'quality', 'label' => 'Quality', 'rules' => 'integer|less_than[11]'],
+        );
+             return $config;
+        }
+        
+      public function __get($key) {
+        return $this->$key;
+    }
 }
